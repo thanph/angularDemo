@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="form-group">
+        <h2 style="width: 100%;padding-top: 20px;">Quản lý</h2>
+        <br>
+        <label for="exampleInputPassword1">ID</label>
+        <input class="form-control" id="exampleInputPassword1" placeholder="ID" [(ngModel)]="id" style="width: auto;"
+            disabled="">
+        <br>
+        <label for="exampleInputPassword1">USERNAME</label>
+        <input class="form-control" id="exampleInputPassword1" placeholder="enter username" [(ngModel)]="username"
+            style="width: auto;">
+        <br>
+        <label for="exampleInputPassword1">PASSWORD</label>
+        <input class="form-control" id="exampleInputPassword1" placeholder="enter password" [(ngModel)]="password"
+            style="width: auto;">
+        <br>
+        <div *ngIf="isBlank" class="alert alert-danger">
+            {{ errorMessage }}
+        </div>
+        <button type="button" class="btn btn-outline-primary" (click)="addUser()">create</button>
+        <button type="button" class="btn btn-outline-primary" (click)="clear()">clear</button>
+        <button type="button" class="btn btn-outline-primary" (click)="delete(id)">delete</button>
+        <button type="button" class="btn btn-outline-primary" (click)="update(id,username,password)">update</button>
+    </div>
+    <div class="danh-sach">
+        <h2 style="padding-top: 20px;">Danh sách</h2>
+        <br>
+        <table id="table" class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">USERNAME</th>
+                    <th scope="col">PASSWORD</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users" (dblclick)="onRowClick(user)">
+                    <td>{{user.id}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.password}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
